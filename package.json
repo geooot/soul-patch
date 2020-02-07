@@ -1,0 +1,28 @@
+{
+  "name": "part-time-templator",
+  "version": "1.0.0",
+  "description": "Generating HTML through means that are not efficient, or safe. But it gets the job done. (and just want's to have a good time!)",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/geooot/part-time-templator.git"
+  },
+  "keywords": [
+    "HTML",
+    "templating-engine",
+    "work-from-home",
+    "#blessed"
+  ],
+  "author": "George (geooot)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/geooot/part-time-templator/issues"
+  },
+  "homepage": "https://github.com/geooot/part-time-templator#readme",
+  "devDependencies": {
+    "typescript": "^3.7.5"
+  }
+}
