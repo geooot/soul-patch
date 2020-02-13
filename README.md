@@ -4,8 +4,8 @@ A HTML templator with angular like syntax. Generating HTML through means that ar
 If moustache and handlebars are real templating engines, then soul-patch is it's wierd distant cousin.
 
 ## Installation
-```
-npm install stubble
+```bash
+$ npm install @geooot/soul-patch
 ```
 
 ## Usage
