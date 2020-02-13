@@ -1,5 +1,5 @@
 # stubble
-An HTML templator with angular like syntax. Generating HTML through means that are not efficient, or safe. But it gets the job done. Only really good for shady static site generation.
+A HTML templator with angular like syntax. Generating HTML through means that are not efficient, or safe. Only really good for shady static site generation.
 
 If moustache and handlebars are real templating engines, then stubble is it's wierd distant cousin.
 
