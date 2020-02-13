@@ -90,11 +90,11 @@ Renders an item if a certain condition is true
 #### Example
 This template:
 ```html
-<p sb-render-if="10 < 100">Turns out 10 is greater than 100 so this will render</p>
+<p sb-render-if="10 < 100">Turns out 10 is less than 100 so this will render</p>
 <p sb-render-if="myIQ > averageIQForAge(19)">But my IQ is below average so this will not render</p>
 ```
 
 Results in:
 ```html
-<p>Turns out 10 is greater than 100 so this will render</p>
+<p>Turns out 10 is less than 100 so this will render</p>
 ```
