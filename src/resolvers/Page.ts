@@ -4,7 +4,8 @@ import * as cheerio from "cheerio";
 import { getOperators } from "../operators";
 
 export interface PageFields {
-    inputFile: string; // ex: "src/somepage.html"
+    input?: string;
+    inputFile?: string; // ex: "src/somepage.html"
     route?: string;
     outputFile?: string; // ex: "public/somepage.html"
     props?: {
@@ -20,28 +21,37 @@ export interface Node {
 }
 
 export class Page {
-    private inputFile: string; // ex: "src/somepage.html"
+    private input?: string;
+    private inputFile?: string; // ex: "src/somepage.html"
     private outputFile?: string; // ex: "public/somepage.html"
     private props?: {
         [index: string]: string;
     };
 
     constructor(
-        inputFile: string,
+        input?: string,
+        inputFile?: string,
         outputFile?: string,
         props?: { [index: string]: string }
     ) {
+        this.input = input;
         this.inputFile = inputFile;
         this.outputFile = outputFile;
         this.props = props;
     }
 
     public static from(pageObj: PageFields): Page {
-        return new Page(pageObj.inputFile, pageObj.outputFile, pageObj.props);
+        return new Page(
+            pageObj.input,
+            pageObj.inputFile,
+            pageObj.outputFile,
+            pageObj.props
+        );
     }
 
-    public async render(): Promise<void> {
-        const templateString = await this.readInputFile();
+    public async render(): Promise<string> {
+        const templateString =
+            this.input || (await this.readInputFile(this.inputFile));
         const $ = cheerio.load(templateString);
 
         if ($.root().length <= 0) {
@@ -50,7 +60,9 @@ export class Page {
 
         this.iterateNodes($.root()[0], $);
 
-        return this.writeToOutputFile($.html());
+        await this.writeToOutputFile($.html());
+
+        return $.html();
     }
 
     private iterateNodes(root: CheerioElement, $: CheerioStatic): void {
@@ -97,10 +109,12 @@ export class Page {
         }
     }
 
-    private async readInputFile(): Promise<string> {
-        return fs.promises
-            .readFile(this.inputFile)
-            .then(data => data.toString());
+    private async readInputFile(inputFile?: string): Promise<string> {
+        if (!inputFile)
+            throw new Error(
+                "Invalid Input File (or no input string specified)"
+            );
+        return fs.promises.readFile(inputFile).then(data => data.toString());
     }
 
     private async writeToOutputFile(data: any): Promise<void> {

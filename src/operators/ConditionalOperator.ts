@@ -2,7 +2,7 @@ import { PREFIX } from "../constants";
 import { Node } from "../resolvers/Page";
 import { Operator } from "./Operator";
 
-import { VM } from 'vm2';
+import { VM } from "vm2";
 
 const conditionalAttrName = PREFIX + "render-if";
 

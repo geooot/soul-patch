@@ -4,7 +4,7 @@ import { Operator } from "./Operator";
 import * as acorn from "acorn";
 import * as walk from "acorn-walk";
 
-import { VM } from 'vm2';
+import { VM } from "vm2";
 
 const assignAttrName = PREFIX + "for";
 
@@ -42,11 +42,11 @@ export class LoopOperator implements Operator {
         });
 
         const contexts = [] as { [index: string]: string }[];
-        const __addContext = (obj: {[index: string]: string }) => {
+        const __addContext = (obj: { [index: string]: string }): void => {
             contexts.push(obj);
-        }
-        
-        const vm = new VM({ sandbox: {...context, __addContext} });
+        };
+
+        const vm = new VM({ sandbox: { ...context, __addContext } });
 
         vm.run(`for(${loopString}){__addContext({${definedVars.join(",")}})}`);
 

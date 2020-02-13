@@ -9,16 +9,16 @@
 </head>
 <body>
     <h1>Hello! Welcome to my super cool website!</h1>
-    <div sb-render-if="takes && takes.length > 0">
+    <div sp-render-if="takes && takes.length > 0">
         <h2>My unsolicited hot takes!</h2>
-        <ul sb-for="let take of takes">
-            <li><a sb-assign="href: take.href, text: take.text"></a></li>
+        <ul sp-for="let take of takes">
+            <li><a sp-assign="href: take.href, text: take.text"></a></li>
         </ul>
     </div>
-    <div sb-render-if="accomplishments && accomplishments.length > 0">
+    <div sp-render-if="accomplishments && accomplishments.length > 0">
         <h2>My accomplishments!</h2>
-        <ul sb-for="let accomplishment of accomplishments">
-            <li><a sb-assign="href: accomplishment.href, text: take.accomplishment"></a></li>
+        <ul sp-for="let accomplishment of accomplishments">
+            <li><a sp-assign="href: accomplishment.href, text: take.accomplishment"></a></li>
         </ul>
     </div>
 </body>

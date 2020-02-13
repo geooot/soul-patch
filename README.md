@@ -1,29 +1,49 @@
-# stubble
+# soul-patch
 A HTML templator with angular like syntax. Generating HTML through means that are not efficient, or safe. Only really good for shady static site generation.
 
-If moustache and handlebars are real templating engines, then stubble is it's wierd distant cousin.
+If moustache and handlebars are real templating engines, then soul-patch is it's wierd distant cousin.
 
 ## Installation
 ```
-TODO
+npm install stubble
 ```
 
 ## Usage
-```
-TODO:
+```javascript
+const { renderPage } = require('stubble');
+const template = `
+    <ul sp-for="let i=0; i<3; i++">
+        <li sp-assign="text: foo + someFunc(i), class: 'whatever'"></li>
+    </ul>
+`
+let rendered = await renderPage({
+    input: template,
+    props: {
+        foo: "The number is: ",
+        someFunc: (num) => num * 100
+    }
+});
+
+console.log(rendered);
+// Results in:
+// <ul>
+//     <li class="whatever">The number is: 0</li>
+//     <li class="whatever">The number is: 100</li>
+//     <li class="whatever">The number is: 200</li>
+// </ul>
 ```
 
 ## Operators
 Operators allow you to template html by adding special attributes to your HTML. Here are the available operators:
 
-### `sb-assign`
+### `sp-assign`
 This property allows you to assign variables to HTML attributes and set HTML.
     
 #### Example 1
 
 This template:
 ```html
-<p sb-assign="text: someVariable, class: someBool ? 'text-green' : 'text-red'">Whatever</p>
+<p sp-assign="text: someVariable, class: someBool ? 'text-green' : 'text-red'">Whatever</p>
 ```
 Results in:
 ```html
@@ -33,21 +53,21 @@ Results in:
 #### Example 2: Using innerHTML
 This template:
 ```html
-<p sb-assign="innerHTML: markdownToHTML(markdownInAString)"></p>
+<p sp-assign="innerHTML: markdownToHTML(markdownInAString)"></p>
 ```
 Results in:
 ```html
 <p><h1>Here is some raw HTML being injected!!!</h1><p>wowzers</p></p>
 ```
 
-### `sb-for`
+### `sp-for`
 Defines how you can create a loop of elements. 
 
 #### Example 1: For loop
 This template:
 ```html
-<ul sb-for="let i=0; i<10; i++">
-  <li sb-assign="text: i, class: 'whatever'">
+<ul sp-for="let i=0; i<10; i++">
+  <li sp-assign="text: i, class: 'whatever'">
     Anything can go here but it will probably be replaced on render
   </li>
 </ul>
@@ -71,8 +91,8 @@ Results in:
 #### Example 2: For each loop
 This template
 ```html
-<div sb-for="item of listOfObjects">
-  <p sb-assign="text: item.name, id: item.id">Whatever</p>
+<div sp-for="item of listOfObjects">
+  <p sp-assign="text: item.name, id: item.id">Whatever</p>
 </div>
 ```
 Results in
@@ -84,14 +104,14 @@ Results in
 </div>
 ```
 
-### `sb-render-if`
+### `sp-render-if`
 Renders an item if a certain condition is true
 
 #### Example
 This template:
 ```html
-<p sb-render-if="10 < 100">Turns out 10 is less than 100 so this will render</p>
-<p sb-render-if="myIQ > averageIQForAge(19)">But my IQ is below average so this will not render</p>
+<p sp-render-if="10 < 100">Turns out 10 is less than 100 so this will render</p>
+<p sp-render-if="myIQ > averageIQForAge(19)">But my IQ is below average so this will not render</p>
 ```
 
 Results in:

@@ -31,8 +31,7 @@ export class Site {
     ) {
         this.staticFolders = staticFolders;
         for (const page of pages) {
-            if (page.props) page.props = { ...props, ...page.props };
-            else page.props = { ...props };
+            page.props = { ...(props || {}), ...(page.props || {}) };
             this.pages.push(Page.from(page));
         }
     }
@@ -42,12 +41,13 @@ export class Site {
     }
 
     public async render(): Promise<void> {
-        const promises = [];
+        const promises = [] as Promise<string>[];
         for (const page of this.pages) {
             promises.push(page.render());
         }
-        promises.push(this.copyStaticFiles());
-        return Promise.all(promises).then(() => Promise.resolve());
+        await Promise.all(promises);
+        await this.copyStaticFiles();
+        return Promise.resolve();
     }
 
     private async copyStaticFile(file: {
