@@ -1,6 +1,6 @@
 {
-  "name": "soul-patch",
-  "version": "1.0.0",
+  "name": "@geooot/soul-patch",
+  "version": "1.1.0",
   "description": "Generating HTML through means that are not efficient, or safe. But it gets the job done. (and just want's to have a good time!)",
   "main": "dist/index.js",
   "scripts": {

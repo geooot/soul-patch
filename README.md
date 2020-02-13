@@ -10,7 +10,7 @@ $ npm install @geooot/soul-patch
 
 ## Usage
 ```javascript
-const { renderPage } = require('stubble');
+const { renderPage } = require('@geooot/soul-patch');
 const template = `
     <ul sp-for="let i=0; i<3; i++">
         <li sp-assign="text: foo + someFunc(i), class: 'whatever'"></li>
