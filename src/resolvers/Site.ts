@@ -41,13 +41,13 @@ export class Site {
         return new Site(site.pages, site.staticFolders, site.props);
     }
 
-    public async render(): Promise<(void | unknown)[]> {
+    public async render(): Promise<void> {
         const promises = [];
         for (const page of this.pages) {
             promises.push(page.render());
         }
         promises.push(this.copyStaticFiles());
-        return Promise.all(promises);
+        return Promise.all(promises).then(() => Promise.resolve());
     }
 
     private async copyStaticFile(file: {

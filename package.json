@@ -25,6 +25,7 @@
   "bugs": {
     "url": "https://github.com/geooot/stubble/issues"
   },
+  "files": ["dist/**/*"],
   "homepage": "https://github.com/geooot/stubble#readme",
   "devDependencies": {
     "@types/cheerio": "^0.22.16",
