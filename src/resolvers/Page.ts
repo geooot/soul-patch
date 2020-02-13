@@ -4,7 +4,7 @@ import * as cheerio from "cheerio";
 import { getOperators } from "../operators";
 
 export interface PageFields {
-    inputFile: string;   // ex: "src/somepage.html"
+    inputFile: string; // ex: "src/somepage.html"
     route?: string;
     outputFile?: string; // ex: "public/somepage.html"
     props?: {
