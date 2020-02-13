@@ -2,6 +2,8 @@ import { PREFIX } from "../constants";
 import { Node } from "../resolvers/Page";
 import { Operator } from "./Operator";
 
+import { VM } from 'vm2';
+
 const assignAttrName = PREFIX + "assign";
 
 export class AssignOperator implements Operator {
@@ -24,11 +26,8 @@ export class AssignOperator implements Operator {
 
         if (!assignString) throw new Error("Assign Attribute Not Found");
 
-        // I know, i am sorry.
-        // this is why this package is called "part-time-templator"
-        const attrs = eval(
-            `var a; with(context){ a = {${assignString}}; }; a;`
-        ) as { [index: string]: string };
+        const vm = new VM({ sandbox: context });
+        const attrs = vm.run(`({${assignString}})`) as { [index: string]: string };
 
         // assign attributes to nodes
         for (const attr in attrs) {

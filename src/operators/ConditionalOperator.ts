@@ -2,6 +2,8 @@ import { PREFIX } from "../constants";
 import { Node } from "../resolvers/Page";
 import { Operator } from "./Operator";
 
+import { VM } from 'vm2';
+
 const conditionalAttrName = PREFIX + "render-if";
 
 export class ConditionalOperator implements Operator {
@@ -24,9 +26,8 @@ export class ConditionalOperator implements Operator {
 
         if (!conditionalString) throw new Error("Assign Attribute Not Found");
 
-        const bool = eval(`with(context){${conditionalString}}`) as {
-            [index: string]: string;
-        };
+        const vm = new VM({ sandbox: context });
+        const bool = vm.run(conditionalString);
 
         delete node.attribs[conditionalAttrName];
 

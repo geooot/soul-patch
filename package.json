@@ -25,7 +25,9 @@
   "bugs": {
     "url": "https://github.com/geooot/stubble/issues"
   },
-  "files": ["dist/**/*"],
+  "files": [
+    "dist/**/*"
+  ],
   "homepage": "https://github.com/geooot/stubble#readme",
   "devDependencies": {
     "@types/cheerio": "^0.22.16",
@@ -43,6 +45,7 @@
     "acorn": "^7.1.0",
     "acorn-walk": "^7.1.0",
     "cheerio": "^1.0.0-rc.3",
-    "ncp": "^2.0.0"
+    "ncp": "^2.0.0",
+    "vm2": "^3.8.4"
   }
 }

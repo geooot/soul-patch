@@ -4,6 +4,8 @@ import { Operator } from "./Operator";
 import * as acorn from "acorn";
 import * as walk from "acorn-walk";
 
+import { VM } from 'vm2';
+
 const assignAttrName = PREFIX + "for";
 
 export class LoopOperator implements Operator {
@@ -39,14 +41,14 @@ export class LoopOperator implements Operator {
             }
         });
 
-        // I know, i am sorry.
-        // this is why this package is called "part-time-templator"
         const contexts = [] as { [index: string]: string }[];
-        eval(
-            `with(context){ for(${loopString}){contexts.push({${definedVars.join(
-                ","
-            )}});} }`
-        );
+        const __addContext = (obj: {[index: string]: string }) => {
+            contexts.push(obj);
+        }
+        
+        const vm = new VM({ sandbox: {...context, __addContext} });
+
+        vm.run(`for(${loopString}){__addContext({${definedVars.join(",")}})}`);
 
         const children = [] as Node[];
         const ogLength = node.children.length;
