@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="static/css/styles.css" type="text/css" rel="stylesheet"/>
+    <title>Wow! My Super Cool Website</title>
+</head>
+<body>
+    <h1>Hello! Welcome to my super cool website!</h1>
+    <div sb-render-if="takes && takes.length > 0">
+        <h2>My unsolicited hot takes!</h2>
+        <ul sb-for="let take of takes">
+            <li><a sb-assign="href: take.href, text: take.text"></a></li>
+        </ul>
+    </div>
+    <div sb-render-if="accomplishments && accomplishments.length > 0">
+        <h2>My accomplishments!</h2>
+        <ul sb-for="let accomplishment of accomplishments">
+            <li><a sb-assign="href: accomplishment.href, text: take.accomplishment"></a></li>
+        </ul>
+    </div>
+</body>
+</html>

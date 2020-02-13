@@ -1,5 +1,7 @@
 import { PageFields, Page } from './Page';
 import ncp from 'ncp';
+import * as fs from 'fs';
+import * as path from 'path';
 
 export interface SiteFields {
     pages: PageFields[];
@@ -51,9 +53,14 @@ export class Site {
     }
 
     private async copyStaticFile(file: {from: string, to: string}) {
+        const basename = path.sep + path.basename(file.to);
+        await fs.promises.mkdir(file.to.replace(basename, ""), {recursive: true});
         return new Promise((res, rej) => {
             return ncp(file.from, file.to, (err) => {
-                if (err) return rej(err);
+                if (err) {
+                    console.error(err);
+                    return rej({});
+                };
                 return res();
             });
         });

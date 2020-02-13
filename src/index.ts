@@ -5,6 +5,6 @@ export const renderPage = async (page: PageFields) => {
     return Page.from(page).render();
 }   
 
-export const renderSite = (site: SiteFields) => {
+export const renderSite = async (site: SiteFields) => {
     return Site.from(site).render();
 }

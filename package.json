@@ -2,7 +2,7 @@
   "name": "stubble",
   "version": "1.0.0",
   "description": "Generating HTML through means that are not efficient, or safe. But it gets the job done. (and just want's to have a good time!)",
-  "main": "index.js",
+  "main": "dist/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "tsc --noImplicitUseStrict",

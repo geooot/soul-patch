@@ -1,0 +1,8 @@
+body {
+    background-image: linear-gradient(orange, yellow, green, cyan, blue, violet);
+    font-family: sans-serif;
+}
+
+body * {
+    text-shadow: #fff 2px 2px 0px;
+}
