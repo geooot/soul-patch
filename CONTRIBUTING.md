@@ -17,4 +17,4 @@ You can check [the issues page](https://github.com/geooot/soul-patch/issues) for
   commits.
 
 ## Code of Conduct
-Let's be nice to one another! We follow the [Node JS code of conduct](https://github.com/nodejs/admin/blob/master/CODE_OF_CONDUCT.md)
+Let's be nice to one another! Check out our [code of conduct here](https://github.com/geooot/soul-patch/blob/master/CODE_OF_CONDUCT.md)
